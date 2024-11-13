@@ -1,0 +1,59 @@
+<%- include("header") %>
+  <h1><%= title %></h1>
+
+  <script>
+    function onlyNumeric(event) {
+      return (
+        event.charCode == 8
+        || event.charCode == 0
+        || event.charCode == 13
+      ) ? 
+        null
+      :
+        event.charCode >= 48 && event.charCode <= 57
+    }
+
+    function preventPeriod(e) {
+      var key = e.charCode ? e.charCode : e.keyCode;
+
+      if (key == 46 || key == 190 || key == 110) {
+          e.preventDefault();
+      }
+    }
+  </script>
+  
+  <!-- Form to Add a Dog -->
+  <form action="/add" method="POST">
+    <label for="name"><b>Name</b></label>
+    <input type="text" name="name" id="name" required />
+
+    <br> <br>
+
+    <label for="breed"><b>Breed</b></label>
+    <input type="text" name="breed" id="breed" required />
+
+    <br> <br>
+
+    <label for="age"><b>Age</b></label>
+    <input type="number" min="0" step="1" name="age" id="age" oninput="return onlyNumeric(event);" onkeydown="preventPeriod(event)" required />
+
+    <br> <br>
+
+    <label for="treat"><b>Treat</b></label>
+    <input type="text" name="treat" id="treat" required />
+
+    <br> <br>
+
+    <label for="gender"><b>Gender</b></label>
+    <br>
+    <input type="radio" id="M" name="gender" value="M" required>
+    <label for="M">M</label>
+    <br>
+    <input type="radio" id="F" name="gender" value="F" required>
+    <label for="F">F</label>
+
+    <br> <br>
+
+    <input type="submit" value="Add Dog" />
+  </form>
+<%- include("footer") %>

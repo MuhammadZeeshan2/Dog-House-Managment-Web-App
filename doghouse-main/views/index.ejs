@@ -1,0 +1,8 @@
+<%- include("header") %>
+  <h1><%= title %></h1>
+  <ul>
+    <% dogs.forEach(dog => { %>
+      <li><%= dog.name %></li>
+    <% }) %>
+  </ul>
+<%- include("footer") %>
